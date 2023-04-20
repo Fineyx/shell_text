@@ -20,7 +20,8 @@ done
 for i in {2..100..2} # find the even users
 do
 	username="user$i"
-	newpassword="newpassword$i" # setting new password
+	passwdtxt="newpassword$i" # set a unencrypted password
+	newpassword=$(echo $passwdtxt | tr 'a-zA-Z' 'f-za-eF-ZA-E') # encryption
 	
 	echo -e "$newpassword\n$newpassword" | passwd $username &> /dev/null # change password
 	echo "Change password for user: $username to $newpassword"
